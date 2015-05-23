@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+User.destroy_all
+
+user = User.new name: "Imię", surname: "Nazwisko", email: "example@example.com"
+user.password = "password123"
+user.password_confirmation = "password123"
+user.save!
