@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :teams
   resources :matches
   resources :users
   devise_for :users, path: "auth",
