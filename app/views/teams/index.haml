@@ -1,0 +1,14 @@
+%h1 List of teams
+
+%table{ :class => "table table-striped" }
+  %tr
+    %th Team name
+    - if admin_signed_in?
+      %th{ :colspan => "2" } Actions
+
+  - teams.each do |team|
+    %tr
+      %td= team.name
+      - if admin_signed_in?
+        %td= link_to 'Edit', edit_team_path(team)
+        %td= link_to 'Destroy', team_path(team), method: :delete
