@@ -1,0 +1,29 @@
+%h1 Listing matches
+
+%table
+  %thead
+    %tr
+      %th Team a
+      %th Team b
+      %th Date
+      %th Team a goals
+      %th Team b goals
+      %th
+      %th
+      %th
+
+  %tbody
+    - @matches.each do |match|
+      %tr
+        %td= match.team_a_id
+        %td= match.team_b_id
+        %td= match.date
+        %td= match.team_a_goals
+        %td= match.team_b_goals
+        %td= link_to 'Show', match
+        %td= link_to 'Edit', edit_match_path(match)
+        %td= link_to 'Destroy', match, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Match', new_match_path
