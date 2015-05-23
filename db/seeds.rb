@@ -25,3 +25,4 @@ Team.destroy_all
 10.times do |n|
   team = Team.new name: "Drużyna #{n}"
   team.save!
+end
