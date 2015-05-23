@@ -1,5 +1,5 @@
-= form_for @match do |f|
-  - if @match.errors.any?
+= simple_form_for match do |f|
+  - if match.errors.any?
     #error_explanation
       %h2= "#{pluralize(@match.errors.count, "error")} prohibited this match from being saved:"
       %ul
@@ -8,10 +8,10 @@
 
   .field
     = f.label :team_a_id
-    = f.number_field :team_a_id
+    = f.input :team_a_id, collection: all_teams
   .field
     = f.label :team_b_id
-    = f.number_field :team_b_id
+    = f.input :team_b_id, collection: all_teams
   .field
     = f.label :date
     = f.datetime_select :date

@@ -13,3 +13,17 @@ user = User.new name: "Imię", surname: "Nazwisko", email: "example@example.com"
 user.password = "password123"
 user.password_confirmation = "password123"
 user.save!
+
+Admin.destroy_all
+
+admin = Admin.new email: "admin@example.com"
+admin.password = "admin123"
+admin.save!
+
+Team.destroy_all
+
+10.times do |n|
+  team = Team.new name: "Drużyna #{n}"
+  team.save!
+
+end

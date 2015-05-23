@@ -1,5 +1,8 @@
 class TeamsController < ApplicationController
 
+  skip_before_action :authenticate_user!, only: [:new, :create, :delete]
+  before_action :authenticate_admin!, only: [:new, :create, :delete]
+
   expose(:team) { Team.new }
 
   def new
