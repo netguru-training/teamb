@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
   resources :teams
-  resources :matches
+  resources :matches do
+    get 'results', to: 'matches#provide_results', as: :edit_results
+  end
+
   resources :users
   devise_for :users, path: "auth",
   path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret',
