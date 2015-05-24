@@ -1,14 +1,14 @@
 !!!
 %html
   %head
-    %title Teamb
+    %title BetApp
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
     .container-fluid
-      = nav_bar fixed: :top, brand: "%ToDo nazwa", responsive: true do
+      = nav_bar fixed: :top, brand: "BetApp", responsive: true do
         = menu_group do
           = menu_item "Home", root_path
           = menu_divider

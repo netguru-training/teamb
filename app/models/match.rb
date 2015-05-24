@@ -7,8 +7,9 @@ class Match < ActiveRecord::Base
   validates_presence_of :team_b
   validate :teams_unequal
   validates_presence_of :date
-
   validate :set_goals_only_for_played_match
+
+  after_update :set_points_for_users
 
   scope :with_team, ->(team_id) { where("team_a_id=? OR team_b_id=?", team_id, team_id) }
 
@@ -21,10 +22,22 @@ class Match < ActiveRecord::Base
   end
 
   def played?
-    self.date < Time.now
+    date < Time.now if date
+  end
+
+  def winner
+    return team_a if team_a_goals > team_b_goals
+    return team_b if team_b_goals > team_a_goals
+    return "draw" if team_a_goals == team_b_goals
   end
 
   private
+
+  def set_points_for_users
+    bets.each do |bet|
+      bet.resolve
+    end
+  end
 
   def set_goals_only_for_played_match
     played? if (team_a_goals || team_b_goals)
