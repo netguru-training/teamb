@@ -1,0 +1,11 @@
+= simple_form_for(bet) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :user_id
+    = f.input :match_id
+    = f.input :team_a_goals
+    = f.input :team_b_goals
+
+  .form-actions
+    = f.button :submit

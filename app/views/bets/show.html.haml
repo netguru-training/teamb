@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = bet.user_id
+%p
+  %b Match:
+  = bet.match_id
+%p
+  %b Team a goals:
+  = bet.team_a_goals
+%p
+  %b Team b goals:
+  = bet.team_b_goals
+
+= link_to 'Edit', edit_bet_path(bet)
+\|
+= link_to 'Back', bets_path
