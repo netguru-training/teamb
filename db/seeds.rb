@@ -38,6 +38,7 @@ Match.destroy_all
     match.team_a_goals = rand(3)
     match.team_b_goals = rand(3)
   end
+  match.date=Time.new + rand(30).days
   match.save!
 end
 

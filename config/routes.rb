@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :teams
 
-  resources :bets
+  resources :bets, only: [:index]
 
   resources :teams, except: [:show]
 
