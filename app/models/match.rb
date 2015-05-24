@@ -9,6 +9,10 @@ class Match < ActiveRecord::Base
 
   scope :with_team, ->(team_id) { where("team_a_id=? OR team_b_id=?", team_id, team_id) }
 
+  scope :history, -> { where("DATE(date) <= ?", Date.today) }
+
+  scope :history_played, -> { where("DATE(date) <= ? AND team_a_goals IS NOT NULL", Date.today) }
+
   private
 
   def teams_unequal

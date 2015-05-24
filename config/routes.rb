@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :teams, except: [:show]
   resources :matches do
     get 'results', to: 'matches#provide_results', as: :edit_results
+    collection do
+      get :history
+    end
   end
 
   resources :users

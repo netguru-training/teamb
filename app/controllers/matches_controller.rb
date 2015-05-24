@@ -66,6 +66,10 @@ class MatchesController < ApplicationController
 
   end
 
+  def history
+    @matches = Match.history
+  end
+
 
   private
 
