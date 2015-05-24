@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :bets
   resources :teams
   resources :matches do
     get 'results', to: 'matches#provide_results', as: :edit_results
