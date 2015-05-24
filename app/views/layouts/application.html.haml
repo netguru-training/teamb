@@ -13,6 +13,7 @@
           = menu_item "Home", root_path
           = menu_divider
           = menu_item "Mecze", matches_path
+          = menu_item "Bets", bets_path
           - if admin_signed_in?
             = menu_item "Teams", teams_path
         = menu_group pull: :right do

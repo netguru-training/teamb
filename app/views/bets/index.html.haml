@@ -1,6 +1,6 @@
 %h1 Listing bets
 
-%table
+%table.table
   %thead
     %tr
       %th User
@@ -14,13 +14,11 @@
   %tbody
     - bets.each do |bet|
       %tr
-        %td= bet.user_id
-        %td= bet.match_id
+        %td= bet.user.email
+        %td= bet.match.decorate.teams
         %td= bet.team_a_goals
         %td= bet.team_b_goals
-        %td= link_to 'Show', match_bet_path(bet.match,bet)
         %td= link_to 'Edit', edit_match_bet_path(bet.match,bet)
         %td= link_to 'Destroy', match_bet_path(bet.match,bet), :method => :delete, :data => { :confirm => 'Are you sure?' }
-
 %br
 
