@@ -1,4 +1,6 @@
 class BetsController < ApplicationController
+  before_action :check_if_match_unplayed, only: [:update, :edit, :create, :new, :destroy]
+
   expose(:all_bets) { Bet.all }
   expose(:bet)
   expose(:bets)
@@ -55,6 +57,10 @@ class BetsController < ApplicationController
   end
 
   private
+
+    def check_if_match_unplayed
+      redirect_to matches_path unless match.unplayed?
+    end
 
     def bet_params
       params.require(:bet).permit(:user_id, :match_id, :team_a_goals, :team_b_goals)
