@@ -2,9 +2,14 @@ class BetsController < ApplicationController
   expose(:all_bets) { Bet.all }
   expose(:bet)
   expose(:bets)
+  expose(:match)
 
   def index
-    bets = Bet.all
+    bets = params[:match_id] ? Bet.where(match_id: params[:match_id]) : Bet.all
+  end
+
+  def index_user_bets
+
   end
 
   def show
@@ -21,7 +26,7 @@ class BetsController < ApplicationController
     bet = Bet.new(bet_params)
     respond_to do |format|
       if bet.save
-        format.html { redirect_to  bet, notice: 'Bet was successfully created.' }
+        format.html { redirect_to  matches_path, notice: 'Bet was successfully created.' }
         format.json { render :show, status: :created, location:  bet }
       else
         format.html { render :new }
@@ -34,7 +39,7 @@ class BetsController < ApplicationController
     bet = Bet.find(params[:id])
     respond_to do |format|
       if bet.update(bet_params)
-        format.html { redirect_to  bet, notice: 'Bet was successfully updated.' }
+        format.html { redirect_to  matches_path, notice: 'Bet was successfully updated.' }
         format.json { render :show, status: :ok, location:  bet }
       else
         format.html { render :edit }
@@ -46,7 +51,7 @@ class BetsController < ApplicationController
   def destroy
     bet.destroy
     respond_to do |format|
-      format.html { redirect_to bets_url, notice: 'Bet was successfully destroyed.' }
+      format.html { redirect_to matches_path, notice: 'Bet was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

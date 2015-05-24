@@ -1,9 +1,7 @@
-= simple_form_for(bet) do |f|
+= simple_form_for bet, :url => match_bets_path, method: :post do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :user_id
-    = f.input :match_id
     = f.input :team_a_goals
     = f.input :team_b_goals
 

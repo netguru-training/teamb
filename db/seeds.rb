@@ -26,3 +26,14 @@ Team.destroy_all
   team = Team.new name: "Drużyna #{n}"
   team.save!
 end
+
+Bet.destroy_all
+
+Match.all.each do |match|
+  2.times do |n|
+    bet=Bet.new team_a_goals: 1, team_b_goals: 2
+    bet.match=match
+    bet.user=user
+    bet.save!
+  end
+end
