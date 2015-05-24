@@ -15,9 +15,9 @@
   %tbody
     - matches.each do |match|
       %tr
-        %td= match.team_a_id
-        %td= match.team_b_id
-        %td= match.date
+        %td= match.team_a.name
+        %td= match.team_b.name
+        %td= match.date.strftime("%d/%m/%y %H:%M")
         %td= match.team_a_goals
         %td= match.team_b_goals
         - if current_user && match.unplayed?
