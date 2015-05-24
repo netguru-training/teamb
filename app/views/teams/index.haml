@@ -1,17 +1,22 @@
-%h1 List of teams
-%p#notice= flash[:notice]
+.col-md-3
+.col-md-6
+  / %div{ :class => "max-width-800" }
 
-%table{ :class => "table table-striped" }
-  %tr
-    %th Team name
-    - if admin_signed_in?
-      %th{ :colspan => "2" } Actions
+  %h1 List of teams
+  %p#notice= flash[:notice]
 
-  - teams.each do |team|
+  %table{ :class => "table table-striped" }
     %tr
-      %td= team.name
+      %th Team name
       - if admin_signed_in?
-        %td= link_to 'Edit', edit_team_path(team), class: 'btn btn-default'
-        %td= link_to 'Destroy', team_path(team), method: :delete, class: 'btn btn-danger'
-- if admin_signed_in?
-  = link_to 'New team', new_team_path, class: 'btn btn-primary'
+        %th{ :colspan => "2" } Actions
+
+    - teams.each do |team|
+      %tr
+        %td= team.name
+        - if admin_signed_in?
+          %td= link_to 'Edit', edit_team_path(team), class: 'btn btn-default'
+          %td= link_to 'Destroy', team_path(team), method: :delete, class: 'btn btn-danger'
+  - if admin_signed_in?
+    = link_to 'New team', new_team_path, class: 'btn btn-primary'
+.col-md-3

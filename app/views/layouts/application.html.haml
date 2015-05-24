@@ -2,16 +2,20 @@
 %html
   %head
     %title Teamb
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = nav_bar fixed: :top, brand: "%ToDo nazwa", responsive: true do
-      = menu_group do
-        = menu_item "Home", root_path
-        = menu_divider
-        = menu_item "Mecze", matches_path
-      = menu_group pull: :right do
-        - if current_user || current_admin
-          = menu_item "Log Out", destroy_user_session_path, method: :delete
-    = yield
+    .container-fluid
+      = nav_bar fixed: :top, brand: "%ToDo nazwa", responsive: true do
+        = menu_group do
+          = menu_item "Home", root_path
+          = menu_divider
+          = menu_item "Mecze", matches_path
+          - if admin_signed_in?
+            = menu_item "Teams", teams_path
+        = menu_group pull: :right do
+          - if current_user || current_admin
+            = menu_item "Log Out", destroy_user_session_path, method: :delete
+      = yield
