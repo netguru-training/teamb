@@ -5,14 +5,8 @@ class BetsController < ApplicationController
   expose(:match)
 
   def index
-    bets = params[:match_id] ? Bet.where(match_id: params[:match_id]) : Bet.all
-  end
-
-  def index_user_bets
-
-  end
-
-  def show
+    bets = params[:match_id] ? Bet.where(match_id: params[:match_id]) : current_user.bets
+    bets = Bet.all if current_admin
   end
 
   def new
@@ -24,6 +18,8 @@ class BetsController < ApplicationController
 
   def create
     bet = Bet.new(bet_params)
+    bet.match=match
+    bet.user=current_user
     respond_to do |format|
       if bet.save
         format.html { redirect_to  matches_path, notice: 'Bet was successfully created.' }
@@ -37,6 +33,8 @@ class BetsController < ApplicationController
 
   def update
     bet = Bet.find(params[:id])
+    bet.match=match
+    bet.user=current_user
     respond_to do |format|
       if bet.update(bet_params)
         format.html { redirect_to  matches_path, notice: 'Bet was successfully updated.' }
