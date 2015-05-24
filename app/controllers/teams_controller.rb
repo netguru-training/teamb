@@ -1,10 +1,9 @@
 class TeamsController < ApplicationController
 
-  skip_before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :authenticate_admin!, only: [:new, :edit, :create, :update, :destroy]
 
   expose(:teams)
-  expose(:team) 
+  expose(:team)
 
   def index
   end
@@ -30,7 +29,7 @@ class TeamsController < ApplicationController
     team = Team.find(params[:id])
     if team.update(team_params)
       flash[:notice] = "Team updated successfully."
-      render 'index' 
+      render 'index'
     else
       flash[:notice] = "Team could not be updated."
       render 'index'
