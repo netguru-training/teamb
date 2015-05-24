@@ -1,0 +1,23 @@
+.col-md-3
+.col-md-6
+  / %div{ :class => "max-width-800" }
+
+  %h1 History of matches
+
+  %table{ :class => "table table-striped" }
+    %tr
+      %th Team A
+      %th Team B
+      %th Day scheduled
+      %th Result
+      
+    - @matches.each do |match|
+      %tr
+        %td= match.team_a.name
+        %td= match.team_b.name
+        %td= match.date
+        - if match.team_a_goals && match.team_b_goals
+          %td= match.team_a_goals + ":" + match.team_b_goals
+        - else
+          %td Not played
+.col-md-3
