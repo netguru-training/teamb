@@ -7,6 +7,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
+  -if user_signed_in?
     .container-fluid
       = nav_bar fixed: :top, brand: "BetApp", responsive: true do
         = menu_group do
@@ -19,7 +20,7 @@
         = menu_group pull: :right do
           %li
             = show_user_type
-            \: &nbsp
+            \ &nbsp
           - if current_user || current_admin
             %li= current_user.try(:email)
             %li= current_admin.try(:email)
@@ -27,5 +28,5 @@
           - if current_user
             Points: &nbsp
             = current_user.points
-      = flash[:notice]
-      = yield
+  = flash[:notice]
+  = yield
