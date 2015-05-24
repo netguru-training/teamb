@@ -2,20 +2,22 @@
 
 %p
   %b Team a:
-  = @match.team_a_id
+  = match.team_a_id
 %p
   %b Team b:
-  = @match.team_b_id
+  = match.team_b_id
 %p
   %b Date:
-  = @match.date
+  = match.date
 %p
   %b Team a goals:
-  = @match.team_a_goals
+  = match.team_a_goals
 %p
   %b Team b goals:
-  = @match.team_b_goals
+  = match.team_b_goals
 
-= link_to 'Edit', edit_match_path(@match)
+= link_to 'Edit', edit_match_path(match)
 \|
 = link_to 'Back', matches_path
+\|
+= link_to 'Result', match_edit_results_path(match)

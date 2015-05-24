@@ -1,3 +1,5 @@
+%h1 Editing match
+
 = simple_form_for match do |f|
   - if match.errors.any?
     #error_explanation
@@ -14,15 +16,6 @@
     = f.input :team_b_id, collection: all_teams
   .field
     = f.label :date
-    #datetimepicker1.input-group.date
-      = f.text_field :date, class: 'form-control', :type => "text"
-      %span.input-group-addon
-        %span.glyphicon.glyphicon-calendar
-  .field
-    = f.label :team_a_goals
-    = f.number_field :team_a_goals
-  .field
-    = f.label :team_b_goals
-    = f.number_field :team_b_goals
+    = f.datetime_select :date
   .actions
-    = f.submit 'Save'
+    = f.submit 'Provide'
