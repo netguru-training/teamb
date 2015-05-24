@@ -8,6 +8,8 @@ class Match < ActiveRecord::Base
   validate :teams_unequal
   validates_presence_of :date
 
+  validate :set_goals_only_for_played_match
+
   scope :with_team, ->(team_id) { where("team_a_id=? OR team_b_id=?", team_id, team_id) }
 
   scope :history, -> { where("DATE(date) <= ?", Date.today) }
@@ -15,11 +17,18 @@ class Match < ActiveRecord::Base
   scope :history_played, -> { where("DATE(date) <= ? AND team_a_goals IS NOT NULL", Date.today) }
 
   def unplayed?
-    self.date > Time.now
+    !played?
+  end
+
+  def played?
+    self.date < Time.now
   end
 
   private
 
+  def set_goals_only_for_played_match
+    played? if (team_a_goals || team_b_goals)
+  end
 
   def teams_unequal
     return team_a != team_b

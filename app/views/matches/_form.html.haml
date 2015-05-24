@@ -18,11 +18,12 @@
       = f.text_field :date, class: 'form-control', :type => "text"
       %span.input-group-addon
         %span.glyphicon.glyphicon-calendar
-  .field
-    = f.label :team_a_goals
-    = f.number_field :team_a_goals
-  .field
-    = f.label :team_b_goals
-    = f.number_field :team_b_goals
+  - if match.played?
+    .field
+      = f.label :team_a_goals
+      = f.number_field :team_a_goals
+    .field
+      = f.label :team_b_goals
+      = f.number_field :team_b_goals
   .actions
     = f.submit 'Save'

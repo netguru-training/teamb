@@ -58,10 +58,6 @@ class BetsController < ApplicationController
 
   private
 
-    def check_if_match_unplayed
-      redirect_to matches_path unless match.unplayed?
-    end
-
     def bet_params
       params.require(:bet).permit(:user_id, :match_id, :team_a_goals, :team_b_goals)
     end

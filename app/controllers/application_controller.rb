@@ -8,4 +8,19 @@ private
   def admin_sign_in?
     current_admin
   end
+
+  def check_if_match_unplayed
+    if match.played?
+      flash[:notice] = "Match was already played!"
+      redirect_to matches_path
+    end
+  end
+
+  def check_if_match_played
+    if match.unplayed?
+      flash[:notice] = "Match wasn't played!"
+      redirect_to matches_path
+    end
+  end
+
 end

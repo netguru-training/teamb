@@ -21,11 +21,15 @@
         %td= match.team_a_goals
         %td= match.team_b_goals
         - if current_user && match.unplayed?
-          %td= link_to "bet", new_match_bet_path(match)
+          %td= link_to "Bet", new_match_bet_path(match)
         - if current_admin
           %td= link_to 'Show', match
-          %td= link_to 'Edit', edit_match_path(match)
-          %td= link_to 'Destroy', match, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          -if match.played?
+            %td= link_to 'Result', provide_results_match_path(match)
+            %td
+          -else
+            %td= link_to 'Edit', edit_match_path(match)
+            %td= link_to 'Destroy', match, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

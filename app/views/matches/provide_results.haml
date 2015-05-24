@@ -1,4 +1,4 @@
-%h1 Editing match
+%h1 Provide results
 
 = simple_form_for match do |f|
   - if match.errors.any?
@@ -9,13 +9,8 @@
           %li= msg
 
   .field
-    = f.label :team_a_id
-    = f.input :team_a_id, collection: all_teams
+    = f.input :team_a_goals
   .field
-    = f.label :team_b_id
-    = f.input :team_b_id, collection: all_teams
-  .field
-    = f.label :date
-    = f.datetime_select :date
+    = f.input :team_b_goals
   .actions
     = f.submit 'Provide'

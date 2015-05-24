@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :teams, except: [:show]
 
   resources :matches do
-    get 'results', to: 'matches#provide_results', as: :edit_results
+    member do
+      get :provide_results
+    end
     collection do
       get :history
     end
