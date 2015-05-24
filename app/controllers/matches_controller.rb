@@ -7,7 +7,6 @@ class MatchesController < ApplicationController
   # GET /matches
   # GET /matches.json
   def index
-    binding.pry
   end
 
   # GET /matches/1
