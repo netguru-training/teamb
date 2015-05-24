@@ -27,6 +27,20 @@ Team.destroy_all
   team.save!
 end
 
+Match.destroy_all
+
+3.times do |n|
+  match=Match.new
+  teams=Team.all.to_a
+  match.team_a=teams.delete(teams.sample)
+  match.team_b=teams.sample
+  if rand(2) == 1
+    match.team_a_goals=rand(3)
+    match.team_b_goals=rand(3)
+  end
+end
+
+
 Bet.destroy_all
 
 Match.all.each do |match|
