@@ -3,7 +3,7 @@ class MatchesController < ApplicationController
   before_action :check_if_match_unplayed, only: [:edit]
 
   expose(:all_teams) { Team.all}
-  expose(:match) { Match.find_by(id: params[:match_id]) || Match.find_by(id: params[:id]) || Match.new }
+  expose(:match) { Match.find_by(id: params[:id]) || Match.new }
   expose(:matches)
 
   def index
