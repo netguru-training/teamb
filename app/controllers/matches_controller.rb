@@ -25,8 +25,7 @@ class MatchesController < ApplicationController
   # POST /matches
   # POST /matches.json
   def create
-    binding.pry
-
+    match = Match.new(match_params)
     respond_to do |format|
       if match.save
         format.html { redirect_to match, notice: 'Match was successfully created.' }
@@ -41,6 +40,7 @@ class MatchesController < ApplicationController
   # PATCH/PUT /matches/1
   # PATCH/PUT /matches/1.json
   def update
+    match = Match.find(params[:id])
     respond_to do |format|
       if match.update(match_params)
         format.html { redirect_to match, notice: 'Match was successfully updated.' }

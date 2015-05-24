@@ -2,5 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-  $('#datetimepicker1').datetimepicker()
+  $('#datetimepicker1').datetimepicker({
+  format: 'DD/MM/YYYY LT'
+  })
   return
