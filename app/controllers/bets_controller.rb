@@ -7,7 +7,6 @@ class BetsController < ApplicationController
   expose(:match)
 
   def index
-    binding.pry
     bets = params[:match_id] ? Bet.where(match_id: params[:match_id]) : current_user.try(bets)
     bets = Bet.all if current_admin
   end
