@@ -1,4 +1,5 @@
 %h1 List of teams
+%p#notice= flash[:notice]
 
 %table{ :class => "table table-striped" }
   %tr
@@ -10,5 +11,7 @@
     %tr
       %td= team.name
       - if admin_signed_in?
-        %td= link_to 'Edit', edit_team_path(team)
-        %td= link_to 'Destroy', team_path(team), method: :delete
+        %td= link_to 'Edit', edit_team_path(team), class: 'btn btn-default'
+        %td= link_to 'Destroy', team_path(team), method: :delete, class: 'btn btn-danger'
+- if admin_signed_in?
+  = link_to 'New team', new_team_path, class: 'btn btn-primary'

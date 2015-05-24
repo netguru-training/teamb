@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
   before_action :authenticate_admin!, only: [:new, :edit, :create, :update, :destroy]
 
   expose(:teams)
-  expose(:team)
+  expose(:team) 
 
   def index
   end
@@ -18,33 +18,34 @@ class TeamsController < ApplicationController
 
   def create
     team = Team.new(team_params)
-
     if team.save
-      render 'new', notice: "Team was succesfully created."
+      flash[:notice] = "Team was succesfully created."
+      render 'index'
     else
-      render 'new', notice: "Team could not be created."
+      flash[:notice] = "Team could not be created."
+      render 'index'
     end
   end
 
   def update
-    notice
-    binding.pry
+    team = Team.find(params[:id])
     if team.update(team_params)
-      notice = "Team updated successfully."
+      flash[:notice] = "Team updated successfully."
+      render 'index' 
     else
-      notice = "Team could not be updated."
+      flash[:notice] = "Team could not be updated."
+      render 'index'
     end
-    render action: "index", notice: notice
   end
 
   def destroy
-    notice
     if team.destroy
-      notice = "Team deleted successfully."
+      flash[:notice] = "Team deleted successfully."
+      render 'index'
     else
-      notice = "Team could not be deleted."
+      flash[:notice] = "Team deleted successfully."
+      render 'index'
     end
-    render action: "index", notice: notice
   end
 
   private
