@@ -14,7 +14,12 @@ class Match < ActiveRecord::Base
 
   scope :history_played, -> { where("DATE(date) <= ? AND team_a_goals IS NOT NULL", Date.today) }
 
+  def unplayed?
+    self.date > Time.now
+  end
+
   private
+
 
   def teams_unequal
     return team_a != team_b

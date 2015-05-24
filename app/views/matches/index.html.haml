@@ -1,6 +1,6 @@
 %h1 Listing matches
 
-%table
+%table.table
   %thead
     %tr
       %th Team a
@@ -20,9 +20,12 @@
         %td= match.date
         %td= match.team_a_goals
         %td= match.team_b_goals
-        %td= link_to 'Show', match
-        %td= link_to 'Edit', edit_match_path(match)
-        %td= link_to 'Destroy', match, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        - if current_user && match.unplayed?
+          %td= link_to "bet", new_match_bet_path(match)
+        - if current_admin
+          %td= link_to 'Show', match
+          %td= link_to 'Edit', edit_match_path(match)
+          %td= link_to 'Destroy', match, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
