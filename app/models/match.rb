@@ -34,6 +34,7 @@ class Match < ActiveRecord::Base
   private
 
   def set_points_for_users
+    return unless team_a_goals
     bets.each do |bet|
       bet.resolve
     end
